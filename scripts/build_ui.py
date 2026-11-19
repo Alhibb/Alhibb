@@ -63,6 +63,24 @@ query($login: String!) {
       }
     }
   }
+  dexMerged: search(query: "repo:exmergo/dex is:pr author:Alhibb is:merged", type: ISSUE, first: 1) {
+    issueCount
+  }
+  agentipyMerged: search(query: "repo:niceberginc/agentipy is:pr author:Alhibb is:merged", type: ISSUE, first: 1) {
+    issueCount
+  }
+  pyhealthMerged: search(query: "repo:sunlabuiuc/PyHealth is:pr author:Alhibb is:merged", type: ISSUE, first: 1) {
+    issueCount
+  }
+  pyhealthOpen: search(query: "repo:sunlabuiuc/PyHealth is:pr author:Alhibb is:open", type: ISSUE, first: 1) {
+    issueCount
+  }
+  raenMerged: search(query: "repo:bshelby88/raen-bounties is:pr author:Alhibb is:merged", type: ISSUE, first: 1) {
+    issueCount
+  }
+  gooseIssues: search(query: "repo:aaif-goose/goose is:issue author:Alhibb", type: ISSUE, first: 1) {
+    issueCount
+  }
 }
 """
 
@@ -121,7 +139,7 @@ def fetch_github_data():
         data = json.loads(resp.read().decode("utf-8"))
     if "errors" in data:
         raise RuntimeError(f"GraphQL errors: {data['errors']}")
-    return data["data"]["user"]
+    return data["data"]
 
 
 def esc(text):
@@ -221,7 +239,7 @@ def render_hero(stats, mode):
 
   <!-- Main identity -->
   <text x="28" y="86" fill="{t["text"]}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="34" font-weight="700" letter-spacing="-0.8">Ibrahim Rabiu <tspan dx="8" fill="{t["muted"]}" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="400" letter-spacing="0">@Alhibb</tspan></text>
-  <text x="28" y="114" fill="{t["sub"]}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14.5">AI Systems Engineer &amp; Solutions Architect  ·  Agentic Tooling (MCP)  ·  Applied ML  ·  Solana / Rust</text>
+  <text x="28" y="114" fill="{t["sub"]}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14.5">AI &amp; Systems Engineer  ·  Open-Source Contributor  ·  Applied ML &amp; Developer Tooling</text>
 
   <!-- Hairline divider -->
   <line x1="28" y1="138" x2="872" y2="138" stroke="{t["border"]}" stroke-width="1"/>
@@ -380,8 +398,92 @@ def render_shipped(stats, mode):
 </svg>'''
 
 
+def render_oss(stats, mode):
+    t = THEMES[mode]
+    oss = stats["oss"]
+    total_merged = oss["dex_merged"] + oss["agentipy_merged"] + oss["pyhealth_merged"] + oss["raen_merged"]
+
+    merged_bg, merged_fg = ("#2E1065", "#C084FC") if mode == "dark" else ("#F3E8FF", "#7E22CE")
+    open_bg, open_fg = ("#052E16", "#4ADE80") if mode == "dark" else ("#DCFCE7", "#15803D")
+    issue_bg, issue_fg = ("#082F49", "#38BDF8") if mode == "dark" else ("#E0F2FE", "#0369A1")
+
+    pyhealth_extra = f" +{oss['pyhealth_open']} OPEN" if oss["pyhealth_open"] > 0 else ""
+
+    tiles = [
+        {
+            "repo": "exmergo/dex",
+            "badge": f"{oss['dex_merged']} MERGED",
+            "line1": "Python, SQL & dbt tooling: incremental test generation,",
+            "line2": "YAML var discovery, semantic checks & DuckDB E2E tests.",
+            "color": "#3572A5",
+        },
+        {
+            "repo": "niceberginc/agentipy",
+            "badge": f"{oss['agentipy_merged']} MERGED",
+            "line1": "Solana agent framework: Jupiter/CoinGecko APIs, Windows",
+            "line2": "asyncio fixes, LangChain/RugCheck & Discord MCP server.",
+            "color": "#22D3EE",
+        },
+        {
+            "repo": "sunlabuiuc/PyHealth",
+            "badge": f"{oss['pyhealth_merged']} MERGED{pyhealth_extra}",
+            "line1": "Healthcare AI: BEHRT, BiteNet & UDC clinical EHR models,",
+            "line2": "fair conformal predictor (calib) & DescEmb embeddings.",
+            "color": "#A855F7",
+        },
+        {
+            "repo": "bshelby88/raen-bounties",
+            "badge": f"{oss['raen_merged']} MERGED",
+            "line1": "Python CLI: standards-compliant EIP-712/EIP-3009 signing,",
+            "line2": "x402 challenge handling, spending limits & test coverage.",
+            "color": "#22C55E",
+        },
+    ]
+
+    tile_svg = []
+    for idx, item in enumerate(tiles):
+        col = idx % 2
+        row = idx // 2
+        x = 24 + col * 434
+        y = 52 + row * 90
+        w = 418
+        h = 78
+        badge_w = max(72, len(item["badge"]) * 6.5 + 16)
+        badge_x = x + w - 14 - badge_w
+
+        tile_svg.append(
+            f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="10" fill="{t["card_inner"]}" stroke="{t["border"]}" stroke-width="1"/>'
+            f'<circle cx="{x + 18}" cy="{y + 22}" r="4" fill="{item["color"]}"/>'
+            f'<text x="{x + 30}" y="{y + 26}" fill="{t["text"]}" font-family="-apple-system, BlinkMacSystemFont, \'Segoe UI\', sans-serif" font-size="13" font-weight="600">{esc(item["repo"])}</text>'
+            f'<rect x="{badge_x:.0f}" y="{y + 13}" width="{badge_w:.0f}" height="18" rx="4" fill="{merged_bg}"/>'
+            f'<text x="{badge_x + badge_w / 2:.0f}" y="{y + 25.5}" text-anchor="middle" fill="{merged_fg}" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" font-weight="600">{esc(item["badge"])}</text>'
+            f'<text x="{x + 16}" y="{y + 48}" fill="{t["sub"]}" font-family="-apple-system, BlinkMacSystemFont, \'Segoe UI\', sans-serif" font-size="11.2">{esc(item["line1"])}</text>'
+            f'<text x="{x + 16}" y="{y + 64}" fill="{t["sub"]}" font-family="-apple-system, BlinkMacSystemFont, \'Segoe UI\', sans-serif" font-size="11.2">{esc(item["line2"])}</text>'
+        )
+
+    goose_badge = f"{oss['goose_issues']} BUG REPORTS"
+    goose_bw = max(86, len(goose_badge) * 6.5 + 16)
+
+    return f'''<svg width="900" height="288" viewBox="0 0 900 288" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="900" height="288" rx="16" fill="{t["card"]}" stroke="{t["border"]}" stroke-width="1"/>
+  <text x="24" y="34" fill="{t["text"]}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13.5" font-weight="600">Open-Source Impact</text>
+  <text x="876" y="34" text-anchor="end" fill="{t["muted"]}" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5">LIVE VERIFIED · {total_merged} FEATURED MERGED PRS</text>
+
+  {"".join(tile_svg)}
+
+  <!-- Bottom compact strip: Goose bug reports -->
+  <rect x="24" y="234" width="852" height="36" rx="8" fill="{t["card_inner"]}" stroke="{t["border"]}" stroke-width="1"/>
+  <circle cx="42" cy="252" r="4" fill="{t["accent"]}"/>
+  <text x="54" y="256" fill="{t["text"]}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12.5" font-weight="600">aaif-goose/goose</text>
+  <rect x="176" y="243" width="{goose_bw:.0f}" height="18" rx="4" fill="{issue_bg}"/>
+  <text x="{176 + goose_bw / 2:.0f}" y="255.5" text-anchor="middle" fill="{issue_fg}" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9.5" font-weight="600">{esc(goose_badge)}</text>
+  <text x="{188 + goose_bw:.0f}" y="256" fill="{t["sub"]}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11.5">Reproducible CLI bug reports: session-export panic piped to head &amp; --resume help flag</text>
+</svg>'''
+
+
 def main():
-    user = fetch_github_data()
+    gql = fetch_github_data()
+    user = gql["user"]
     repos = user["repositories"]["nodes"]
     cal = user["contributionsCollection"]["contributionCalendar"]
     weeks = cal["weeks"]
@@ -448,6 +550,14 @@ def main():
         "languages": languages,
         "recent_prs": recent_prs,
         "recent_repos": recent_repos,
+        "oss": {
+            "dex_merged": gql["dexMerged"]["issueCount"],
+            "agentipy_merged": gql["agentipyMerged"]["issueCount"],
+            "pyhealth_merged": gql["pyhealthMerged"]["issueCount"],
+            "pyhealth_open": gql["pyhealthOpen"]["issueCount"],
+            "raen_merged": gql["raenMerged"]["issueCount"],
+            "goose_issues": gql["gooseIssues"]["issueCount"],
+        },
         "updated_label": datetime.now(timezone.utc).strftime("%b %d").upper(),
     }
 
@@ -457,6 +567,8 @@ def main():
             f.write(render_hero(stats, mode))
         with open(f"assets/bento-{mode}.svg", "w", encoding="utf-8") as f:
             f.write(render_bento(stats, mode))
+        with open(f"assets/oss-{mode}.svg", "w", encoding="utf-8") as f:
+            f.write(render_oss(stats, mode))
         with open(f"assets/shipped-{mode}.svg", "w", encoding="utf-8") as f:
             f.write(render_shipped(stats, mode))
 

@@ -1,7 +1,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/hero-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="./assets/hero-light.svg" />
-  <img alt="Ibrahim Rabiu — AI Systems Engineer & Solutions Architect" src="./assets/hero-dark.svg" width="100%" />
+  <img alt="Ibrahim Rabiu — AI & Systems Engineer · Open-Source Contributor" src="./assets/hero-dark.svg" width="100%" />
 </picture>
 
 <picture>
@@ -9,6 +9,20 @@
   <source media="(prefers-color-scheme: light)" srcset="./assets/bento-light.svg" />
   <img alt="Live Contribution Velocity & Codebase Telemetry" src="./assets/bento-dark.svg" width="100%" />
 </picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/oss-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="./assets/oss-light.svg" />
+  <img alt="Open-Source Impact — Exmergo Dex, AgentiPY, PyHealth, RAEN & Goose" src="./assets/oss-dark.svg" width="100%" />
+</picture>
+
+<p align="center">
+  <a href="https://github.com/exmergo/dex/pulls?q=is%3Apr+author%3AAlhibb+is%3Amerged"><img src="https://img.shields.io/badge/Exmergo_Dex-Merged_PRs-18181B?style=flat-square&labelColor=09090B&color=3572A5" alt="Exmergo Dex Merged PRs" /></a>
+  <a href="https://github.com/niceberginc/agentipy/pulls?q=is%3Apr+author%3AAlhibb+is%3Amerged"><img src="https://img.shields.io/badge/AgentiPY-Merged_PRs-18181B?style=flat-square&labelColor=09090B&color=22D3EE" alt="AgentiPY Merged PRs" /></a>
+  <a href="https://github.com/sunlabuiuc/PyHealth/pulls?q=is%3Apr+author%3AAlhibb+is%3Amerged"><img src="https://img.shields.io/badge/PyHealth-Merged_PRs-18181B?style=flat-square&labelColor=09090B&color=A855F7" alt="PyHealth Merged PRs" /></a>
+  <a href="https://github.com/bshelby88/raen-bounties/pull/28"><img src="https://img.shields.io/badge/RAEN-PR_%2328-18181B?style=flat-square&labelColor=09090B&color=22C55E" alt="RAEN PR #28" /></a>
+  <a href="https://github.com/aaif-goose/goose/issues?q=is%3Aissue+author%3AAlhibb"><img src="https://img.shields.io/badge/Goose-Bug_Reports-18181B?style=flat-square&labelColor=09090B&color=38BDF8" alt="Goose Bug Reports" /></a>
+</p>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/shipped-dark.svg" />
