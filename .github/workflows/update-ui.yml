@@ -1,0 +1,34 @@
+name: Sync Live Profile Bento UI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/build_ui.py"
+      - ".github/workflows/update-ui.yml"
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-ui:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout profile repo
+        uses: actions/checkout@v4
+
+      - name: Generate live Bento SVG cards
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ACTOR: Alhibb
+        run: python3 scripts/build_ui.py
+
+      - name: Commit updated Bento UI
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/
+          git diff --cached --quiet || (git commit -m "chore(ui): refresh live bento telemetry [skip ci]" && git push)
