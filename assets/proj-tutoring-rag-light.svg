@@ -1,0 +1,19 @@
+<svg width="414" height="156" viewBox="0 0 414 156" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI Tutoring RAG (PROTOTYPE) — Alhibb/ai-tutoring-rag">
+  <rect width="414" height="156" rx="14" fill="#FAFAFA" stroke="#E4E4E7" stroke-width="1"/>
+  <circle cx="26" cy="30" r="4.5" fill="#38BDF8"/>
+  <text x="40" y="35" fill="#09090B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600">AI Tutoring RAG</text>
+  <rect x="310" y="19" width="84" height="22" rx="6" fill="#F4F4F5"/>
+  <text x="352.0" y="34" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="600">PROTOTYPE</text>
+  <text x="20" y="69" fill="#3F3F46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13">Personalized university tutoring portal indexing course</text>
+  <text x="20" y="89" fill="#3F3F46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13">notes in ChromaDB with Gemini RAG &amp; SQLite storage.</text>
+  <line x1="20" y1="106" x2="394" y2="106" stroke="#E4E4E7" stroke-width="1"/>
+  <rect x="20" y="118" width="58" height="22" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="49.0" y="133" text-anchor="middle" fill="#52525B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="500">Python</text>
+  <rect x="85" y="118" width="79" height="22" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="124.5" y="133" text-anchor="middle" fill="#52525B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="500">Streamlit</text>
+  <rect x="171" y="118" width="72" height="22" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="207.0" y="133" text-anchor="middle" fill="#52525B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="500">ChromaDB</text>
+  <rect x="250" y="118" width="58" height="22" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="279.0" y="133" text-anchor="middle" fill="#52525B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="500">Gemini</text>
+  <text x="394" y="134" text-anchor="end" fill="#52525B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15">↗</text>
+</svg>

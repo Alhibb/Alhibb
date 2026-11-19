@@ -1,4 +1,4 @@
-"""Generate theme-adaptive SVG assets and refresh marked Markdown sections for Alhibb's GitHub profile."""
+"""Generate minimalist dark/light card-based SVG assets and refresh README metrics for Alhibb."""
 
 from __future__ import annotations
 
@@ -23,8 +23,6 @@ HEADLINE = "AI & Software Engineer"
 SUPPORTING_LINE = "AI Agents · Applied ML · Developer Tooling"
 ORG_LINE = "DEVCLANS SOLUTION LTD · NIGERIA"
 
-OSS_START_MARKER = "<!-- OSS_IMPACT:START -->"
-OSS_END_MARKER = "<!-- OSS_IMPACT:END -->"
 ACTIVITY_START_MARKER = "<!-- ACTIVITY_SUMMARY:START -->"
 ACTIVITY_END_MARKER = "<!-- ACTIVITY_SUMMARY:END -->"
 
@@ -40,6 +38,14 @@ THEMES: dict[str, dict[str, str]] = {
         "muted": "#A1A1AA",
         "accent": "#22D3EE",
         "accent2": "#A855F7",
+        "purple_bg": "#2E1065",
+        "purple_fg": "#D8B4FE",
+        "green_bg": "#052E16",
+        "green_fg": "#86EFAC",
+        "cyan_bg": "#082F49",
+        "cyan_fg": "#7DD3FC",
+        "neutral_bg": "#18181B",
+        "neutral_fg": "#D4D4D8",
         "glow_opacity": "0.16",
     },
     "light": {
@@ -53,9 +59,72 @@ THEMES: dict[str, dict[str, str]] = {
         "muted": "#52525B",
         "accent": "#0284C7",
         "accent2": "#7C3AED",
+        "purple_bg": "#F3E8FF",
+        "purple_fg": "#6B21A8",
+        "green_bg": "#DCFCE7",
+        "green_fg": "#166534",
+        "cyan_bg": "#E0F2FE",
+        "cyan_fg": "#075985",
+        "neutral_bg": "#F4F4F5",
+        "neutral_fg": "#3F3F46",
         "glow_opacity": "0.10",
     },
 }
+
+PROJECT_CARDS: list[dict[str, Any]] = [
+    {
+        "slug": "tradeguard",
+        "title": "TradeGuard",
+        "badge": "TESTNET DEMO",
+        "badge_tone": "cyan",
+        "dot_color": "#22D3EE",
+        "line1": "Reviewed Qwen agreement extraction, delivery evidence,",
+        "line2": "and Solidity escrow settlement on Monad testnet.",
+        "tags": ["JavaScript", "TypeScript", "Solidity", "Qwen"],
+        "repo": "Alhibb/metropolis_tradeguard",
+    },
+    {
+        "slug": "evidenceshift",
+        "title": "EvidenceShift",
+        "badge": "RESEARCH",
+        "badge_tone": "purple",
+        "dot_color": "#A855F7",
+        "line1": "Zero-dependency Python LLM evaluation harness for",
+        "line2": "conflicting dates, authority, and incomplete evidence.",
+        "tags": ["Python", "Stdlib", "Bootstrap Eval", "unittest"],
+        "repo": "Alhibb/EvidenceShift",
+    },
+    {
+        "slug": "cloudcompass",
+        "title": "CloudCompass AI",
+        "badge": "WEB PROTOTYPE",
+        "badge_tone": "green",
+        "dot_color": "#22C55E",
+        "line1": "Visual AWS architecture designer with React Flow,",
+        "line2": "AWS Bedrock runtime, Supabase, and diagram export.",
+        "tags": ["TypeScript", "Next.js", "React Flow", "Bedrock"],
+        "repo": "Alhibb/CloudCompassAI",
+    },
+    {
+        "slug": "tutoring-rag",
+        "title": "AI Tutoring RAG",
+        "badge": "PROTOTYPE",
+        "badge_tone": "neutral",
+        "dot_color": "#38BDF8",
+        "line1": "Personalized university tutoring portal indexing course",
+        "line2": "notes in ChromaDB with Gemini RAG & SQLite storage.",
+        "tags": ["Python", "Streamlit", "ChromaDB", "Gemini"],
+        "repo": "Alhibb/ai-tutoring-rag",
+    },
+]
+
+CAPABILITY_ROWS: list[tuple[str, list[str]]] = [
+    ("AI & Applied ML", ["AI Agents", "RAG Pipelines", "LLM Eval", "PyTorch", "Clinical EHR / PyHealth"]),
+    ("Backend & Tooling", ["Python", "FastAPI", "MCP Servers", "CLI Tooling", "asyncio", "REST / GraphQL"]),
+    ("Data Engineering", ["SQL", "dbt", "DuckDB", "Semantic Validation", "Cube"]),
+    ("Web Applications", ["TypeScript", "JavaScript", "Next.js", "React", "Tailwind CSS", "Supabase"]),
+    ("Blockchain", ["Solidity", "EIP-712 / EIP-3009", "x402", "Solana RPC", "Monad Testnet"]),
+]
 
 GRAPHQL_QUERY = """
 query($login: String!, $qDexMerged: String!, $qDexOpen: String!, $qAgentipyMerged: String!, $qAgentipyOpen: String!, $qPyhealthMerged: String!, $qPyhealthOpen: String!, $qRaenMerged: String!, $qGooseIssues: String!) {
@@ -186,7 +255,6 @@ def fetch_github_data(
                 raise GitHubAPIError("GraphQL response missing 'data' object.")
             return data
         except urllib.error.HTTPError as exc:
-            # Respect rate limits and client errors immediately; do not retry indefinitely.
             remaining = exc.headers.get("X-RateLimit-Remaining") if exc.headers else None
             if exc.code in (401, 403, 429) or remaining == "0":
                 raise GitHubAPIError(
@@ -266,7 +334,6 @@ def normalize_and_validate(
 
 
 def esc(text: Any) -> str:
-    """Escape text safely for XML/SVG interpolation."""
     return html.escape(str(text if text is not None else ""), quote=True)
 
 
@@ -279,6 +346,12 @@ def pluralize(count: int, singular: str, plural: str | None = None) -> str:
     return f"{count} {word}"
 
 
+def _theme(theme_name: str) -> dict[str, str]:
+    if theme_name not in THEMES:
+        raise ValidationError(f"Unsupported theme: {theme_name}")
+    return THEMES[theme_name]
+
+
 def render_hero_svg(
     theme_name: str,
     *,
@@ -288,11 +361,7 @@ def render_hero_svg(
     supporting_line: str = SUPPORTING_LINE,
     org_line: str = ORG_LINE,
 ) -> str:
-    """Render a clean, high-contrast, mobile-legible Hero SVG."""
-    if theme_name not in THEMES:
-        raise ValidationError(f"Unsupported theme: {theme_name}")
-    t = THEMES[theme_name]
-
+    t = _theme(theme_name)
     return f'''<svg width="840" height="196" viewBox="0 0 840 196" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="{esc(name)} (@{esc(username)}) — {esc(headline)}">
   <defs>
     <pattern id="dots-{theme_name}" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -319,22 +388,187 @@ def render_hero_svg(
   <rect x="32" y="0" width="136" height="3" rx="1.5" fill="url(#accent-bar-{theme_name})"/>
 
   <text x="32" y="42" fill="{t["muted"]}" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="600" letter-spacing="1.2">{esc(org_line)}</text>
-
   <text x="32" y="96" fill="{t["text"]}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="-0.8">{esc(name)} <tspan dx="10" fill="{t["muted"]}" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20" font-weight="500" letter-spacing="0">@{esc(username)}</tspan></text>
-
   <text x="32" y="133" fill="{t["accent"]}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" font-weight="600">{esc(headline)}</text>
-
   <text x="32" y="166" fill="{t["sub"]}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17.5" font-weight="400">{esc(supporting_line)}</text>
 </svg>
 '''
 
 
-def render_summary_svg(metrics: ProfileMetrics, theme_name: str) -> str:
-    """Render a compact, accurately scoped public GitHub activity summary card."""
-    if theme_name not in THEMES:
-        raise ValidationError(f"Unsupported theme: {theme_name}")
-    t = THEMES[theme_name]
+def _render_half_card(
+    theme_name: str,
+    *,
+    title: str,
+    badge: str,
+    badge_tone: str,
+    dot_color: str,
+    line1: str,
+    line2: str,
+    tags: list[str],
+    aria_label: str,
+) -> str:
+    t = _theme(theme_name)
+    badge_bg = t[f"{badge_tone}_bg"]
+    badge_fg = t[f"{badge_tone}_fg"]
+    badge_w = max(78, int(len(badge) * 7.2 + 20))
+    badge_x = 414 - 20 - badge_w
 
+    tag_svg: list[str] = []
+    tx = 20
+    for tag in tags:
+        tw = int(len(tag) * 6.8 + 18)
+        if tx + tw > 372:
+            break
+        tag_svg.append(
+            f'  <rect x="{tx}" y="118" width="{tw}" height="22" rx="6" fill="{t["card_inner"]}" stroke="{t["border"]}" stroke-width="1"/>'
+        )
+        tag_svg.append(
+            f'  <text x="{tx + tw / 2:.1f}" y="133" text-anchor="middle" fill="{t["muted"]}" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="500">{esc(tag)}</text>'
+        )
+        tx += tw + 7
+
+    return f'''<svg width="414" height="156" viewBox="0 0 414 156" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="{esc(aria_label)}">
+  <rect width="414" height="156" rx="14" fill="{t["card"]}" stroke="{t["border"]}" stroke-width="1"/>
+  <circle cx="26" cy="30" r="4.5" fill="{esc(dot_color)}"/>
+  <text x="40" y="35" fill="{t["text"]}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600">{esc(title)}</text>
+  <rect x="{badge_x}" y="19" width="{badge_w}" height="22" rx="6" fill="{badge_bg}"/>
+  <text x="{badge_x + badge_w / 2:.1f}" y="34" text-anchor="middle" fill="{badge_fg}" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="600">{esc(badge)}</text>
+  <text x="20" y="69" fill="{t["sub"]}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13">{esc(line1)}</text>
+  <text x="20" y="89" fill="{t["sub"]}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13">{esc(line2)}</text>
+  <line x1="20" y1="106" x2="394" y2="106" stroke="{t["border"]}" stroke-width="1"/>
+{chr(10).join(tag_svg)}
+  <text x="394" y="134" text-anchor="end" fill="{t["muted"]}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15">↗</text>
+</svg>
+'''
+
+
+def render_oss_cards(metrics: ProfileMetrics, theme_name: str) -> dict[str, str]:
+    """Render clickable minimalist cards for each featured open-source codebase."""
+    t = _theme(theme_name)
+    pyhealth_badge = (
+        f"{metrics.pyhealth_merged} MERGED · +{metrics.pyhealth_open} OPEN"
+        if metrics.pyhealth_open > 0
+        else f"{metrics.pyhealth_merged} MERGED"
+    )
+    dex_tags = ["Python", "SQL", "dbt", "DuckDB"]
+    agentipy_tags = ["Solana", "MCP", "asyncio", "LangChain"]
+    pyhealth_tags = ["PyTorch", "EHR Models", "Conformal"]
+    raen_tags = ["Python CLI", "EIP-3009", "x402"]
+
+    cards = {
+        f"oss-dex-{theme_name}.svg": _render_half_card(
+            theme_name,
+            title="exmergo/dex",
+            badge=f"{metrics.dex_merged} MERGED",
+            badge_tone="purple",
+            dot_color="#3572A5",
+            line1="Incremental test scaffolding, Cube token scope checks,",
+            line2="semantic validation & DuckDB end-to-end coverage.",
+            tags=dex_tags,
+            aria_label=f"exmergo/dex — {metrics.dex_merged} merged PRs by @{metrics.username}",
+        ),
+        f"oss-agentipy-{theme_name}.svg": _render_half_card(
+            theme_name,
+            title="niceberginc/agentipy",
+            badge=f"{metrics.agentipy_merged} MERGED",
+            badge_tone="purple",
+            dot_color="#22D3EE",
+            line1="Windows aiodns compatibility, Jupiter/CoinGecko APIs,",
+            line2="Solana RPC handling, RugCheck & Discord MCP server.",
+            tags=agentipy_tags,
+            aria_label=f"niceberginc/agentipy — {metrics.agentipy_merged} merged PRs by @{metrics.username}",
+        ),
+        f"oss-pyhealth-{theme_name}.svg": _render_half_card(
+            theme_name,
+            title="sunlabuiuc/PyHealth",
+            badge=pyhealth_badge,
+            badge_tone="purple",
+            dot_color="#A855F7",
+            line1="Integrated BEHRT, BiteNet, UDC & DescEmb EHR models",
+            line2="plus group-conditional fair conformal calibration.",
+            tags=pyhealth_tags,
+            aria_label=f"sunlabuiuc/PyHealth — {metrics.pyhealth_merged} merged PRs by @{metrics.username}",
+        ),
+        f"oss-raen-{theme_name}.svg": _render_half_card(
+            theme_name,
+            title="bshelby88/raen-bounties",
+            badge=f"{metrics.raen_merged} MERGED",
+            badge_tone="purple",
+            dot_color="#22C55E",
+            line1="Standards-compliant EIP-712/EIP-3009 signing via",
+            line2="eth-account, x402 challenge handling & test suite.",
+            tags=raen_tags,
+            aria_label=f"bshelby88/raen-bounties — {metrics.raen_merged} merged PR by @{metrics.username}",
+        ),
+    }
+
+    goose_badge = f"{metrics.goose_issues} BUG REPORTS"
+    goose_bw = max(104, int(len(goose_badge) * 7.2 + 20))
+    cards[f"oss-goose-{theme_name}.svg"] = f'''<svg width="840" height="62" viewBox="0 0 840 62" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="aaif-goose/goose — {metrics.goose_issues} reproducible CLI bug reports by @{esc(metrics.username)}">
+  <rect width="840" height="62" rx="12" fill="{t["card"]}" stroke="{t["border"]}" stroke-width="1"/>
+  <circle cx="26" cy="31" r="4.5" fill="{t["accent"]}"/>
+  <text x="40" y="36" fill="{t["text"]}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="600">aaif-goose/goose</text>
+  <rect x="184" y="20" width="{goose_bw}" height="22" rx="6" fill="{t["cyan_bg"]}"/>
+  <text x="{184 + goose_bw / 2:.1f}" y="35" text-anchor="middle" fill="{t["cyan_fg"]}" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="600">{esc(goose_badge)}</text>
+  <text x="{200 + goose_bw}" y="35.5" fill="{t["sub"]}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13">Reproducible CLI bug reports: HTML export pipe panic &amp; --resume help flag</text>
+  <text x="820" y="36" text-anchor="end" fill="{t["muted"]}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15">↗</text>
+</svg>
+'''
+    return cards
+
+
+def render_project_cards(theme_name: str) -> dict[str, str]:
+    """Render clickable minimalist cards for the four curated showcase projects."""
+    cards: dict[str, str] = {}
+    for p in PROJECT_CARDS:
+        cards[f"proj-{p['slug']}-{theme_name}.svg"] = _render_half_card(
+            theme_name,
+            title=p["title"],
+            badge=p["badge"],
+            badge_tone=p["badge_tone"],
+            dot_color=p["dot_color"],
+            line1=p["line1"],
+            line2=p["line2"],
+            tags=p["tags"],
+            aria_label=f"{p['title']} ({p['badge']}) — {p['repo']}",
+        )
+    return cards
+
+
+def render_stack_svg(theme_name: str) -> str:
+    """Render a minimalist card showing curated technical capabilities."""
+    t = _theme(theme_name)
+    rows_svg: list[str] = []
+    for idx, (category, items) in enumerate(CAPABILITY_ROWS):
+        y = 40 + idx * 38
+        if idx > 0:
+            rows_svg.append(
+                f'  <line x1="24" y1="{y - 20}" x2="816" y2="{y - 20}" stroke="{t["border"]}" stroke-width="1"/>'
+            )
+        rows_svg.append(
+            f'  <text x="24" y="{y + 4}" fill="{t["text"]}" font-family="-apple-system, BlinkMacSystemFont, \'Segoe UI\', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600">{esc(category)}</text>'
+        )
+        px = 186
+        for item in items:
+            pw = int(len(item) * 6.9 + 20)
+            rows_svg.append(
+                f'  <rect x="{px}" y="{y - 12}" width="{pw}" height="24" rx="6" fill="{t["card_inner"]}" stroke="{t["border"]}" stroke-width="1"/>'
+            )
+            rows_svg.append(
+                f'  <text x="{px + pw / 2:.1f}" y="{y + 4}" text-anchor="middle" fill="{t["sub"]}" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">{esc(item)}</text>'
+            )
+            px += pw + 8
+
+    height = 224
+    return f'''<svg width="840" height="{height}" viewBox="0 0 840 {height}" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Technical capabilities across AI &amp; Applied ML, Backend &amp; Tooling, Data Engineering, Web Applications, and Blockchain">
+  <rect width="840" height="{height}" rx="16" fill="{t["card"]}" stroke="{t["border"]}" stroke-width="1"/>
+{chr(10).join(rows_svg)}
+</svg>
+'''
+
+
+def render_summary_svg(metrics: ProfileMetrics, theme_name: str) -> str:
+    t = _theme(theme_name)
     columns = [
         (
             "FEATURED UPSTREAM PRS",
@@ -387,67 +621,20 @@ def render_summary_svg(metrics: ProfileMetrics, theme_name: str) -> str:
 '''
 
 
-def render_oss_markdown(metrics: ProfileMetrics) -> str:
-    """Render accessible, mobile-friendly Markdown blocks for featured open-source work."""
-    dex_open_note = (
-        f" ({pluralize(metrics.dex_open, 'open PR')} under review)"
-        if metrics.dex_open > 0
-        else ""
-    )
-    agentipy_open_note = (
-        f" ({pluralize(metrics.agentipy_open, 'open PR')})"
-        if metrics.agentipy_open > 0
-        else ""
-    )
-    pyhealth_open_note = (
-        f" ({pluralize(metrics.pyhealth_open, 'open PR')} under review)"
-        if metrics.pyhealth_open > 0
-        else ""
-    )
-
-    lines = [
-        f"*{pluralize(metrics.featured_merged_total, 'merged PR')} across the four featured upstream codebases below, plus {pluralize(metrics.goose_issues, 'reproducible bug report')} on Goose (updated {metrics.updated_at_utc}).*",
-        "",
-        f"### [exmergo/dex](https://github.com/exmergo/dex) — {pluralize(metrics.dex_merged, 'merged PR')}{dex_open_note}",
-        "Open-source Python, SQL, and dbt data-engineering toolkit. Contributed incremental test scaffolding fixes, Cube token scope enforcement, semantic layer validation, YAML variable reference discovery, and DuckDB end-to-end test coverage.",
-        f"- **Selected PRs:** [Cube `dex_scopes` enforcement (#1175)](https://github.com/exmergo/dex/pull/1175) · [Incremental test scaffold fix (#1144)](https://github.com/exmergo/dex/pull/1144)",
-        f"- **Verify:** [All merged PRs by @{metrics.username}](https://github.com/exmergo/dex/pulls?q=is%3Apr+author%3A{metrics.username}+is%3Amerged)",
-        "",
-        f"### [niceberginc/agentipy](https://github.com/niceberginc/agentipy) — {pluralize(metrics.agentipy_merged, 'merged PR')}{agentipy_open_note}",
-        "Python toolkit for connecting AI agents to Solana protocols and data sources. Contributed Windows `asyncio`/`aiodns` compatibility, Jupiter and CoinGecko integrations, Solana RPC response handling, LangChain/RugCheck tooling, a Discord MCP server, and examples.",
-        f"- **Selected PRs:** [Windows `aiodns` event-loop fix (#69)](https://github.com/niceberginc/agentipy/pull/69) · [Discord MCP server (#137)](https://github.com/niceberginc/agentipy/pull/137)",
-        f"- **Verify:** [All merged PRs by @{metrics.username}](https://github.com/niceberginc/agentipy/pulls?q=is%3Apr+author%3A{metrics.username}+is%3Amerged)",
-        "",
-        f"### [sunlabuiuc/PyHealth](https://github.com/sunlabuiuc/PyHealth) — {pluralize(metrics.pyhealth_merged, 'merged PR')}{pyhealth_open_note}",
-        "Open-source deep learning framework for healthcare and electronic health records. Implemented and integrated published clinical models—BEHRT, BiteNet, UDC, and DescEmb—in `pyhealth.models`, plus a group-conditional fair conformal predictor in `pyhealth.calib`.",
-        f"- **Selected PRs:** [BEHRT EHR model integration (#1517)](https://github.com/sunlabuiuc/PyHealth/pull/1517) · [DescEmb code-embedding model integration (#1530)](https://github.com/sunlabuiuc/PyHealth/pull/1530)",
-        f"- **Verify:** [All merged PRs by @{metrics.username}](https://github.com/sunlabuiuc/PyHealth/pulls?q=is%3Apr+author%3A{metrics.username}+is%3Amerged)",
-        "",
-        f"### [bshelby88/raen-bounties](https://github.com/bshelby88/raen-bounties) — {pluralize(metrics.raen_merged, 'merged PR')}",
-        "Python CLI for x402 micropayment workflows. Replaced ad-hoc EIP-712/EIP-3009 signing with standards-compliant typed-data signing via `eth-account`, fixing challenge handling, nonce consistency, spending limits, and test coverage.",
-        "- **Verify:** [Standards-compliant EIP-3009 signing & x402 handling (#28)](https://github.com/bshelby88/raen-bounties/pull/28)",
-        "",
-        f"### [aaif-goose/goose](https://github.com/aaif-goose/goose) — {pluralize(metrics.goose_issues, 'bug report')} (issues, not code PRs)",
-        "Open-source developer agent CLI. Filed reproducible CLI bug reports with isolated scripts, synthetic fixtures, and logs covering a session HTML export panic when piped to `head` and misleading `--resume` flag help output.",
-        f"- **Verify:** [Session HTML export pipe panic (#13296)](https://github.com/aaif-goose/goose/issues/13296) · [Unsupported `--resume` help output (#13547)](https://github.com/aaif-goose/goose/issues/13547)",
-    ]
-    return "\n".join(lines)
-
-
 def render_activity_markdown(metrics: ProfileMetrics) -> str:
-    """Render accessible plain-text summary matching summary-*.svg."""
     return (
-        f"Public GitHub summary (updated {metrics.updated_at_utc}): "
-        f"**{pluralize(metrics.featured_merged_total, 'merged PR')}** across the four featured upstream repositories, "
-        f"**{fmt_count(metrics.contributions_1y)} contributions** in the rolling 12-month public calendar, and "
-        f"**{pluralize(metrics.goose_issues, 'bug report')}** filed on `aaif-goose/goose`."
+        f"<sub>Updated {metrics.updated_at_utc} · "
+        f"<strong>{pluralize(metrics.featured_merged_total, 'merged PR')}</strong> across featured upstream projects "
+        f"(<code>exmergo/dex</code>: {metrics.dex_merged}, <code>agentipy</code>: {metrics.agentipy_merged}, "
+        f"<code>PyHealth</code>: {metrics.pyhealth_merged}, <code>raen-bounties</code>: {metrics.raen_merged}) · "
+        f"<strong>{fmt_count(metrics.contributions_1y)}</strong> rolling-year public contributions · "
+        f"<strong>{pluralize(metrics.goose_issues, 'bug report')}</strong> on <code>aaif-goose/goose</code>.</sub>"
     )
 
 
 def update_marked_section(
     document: str, start_marker: str, end_marker: str, replacement: str
 ) -> str:
-    """Replace content strictly between start_marker and end_marker while preserving surrounding text."""
     start_idx = document.find(start_marker)
     end_idx = document.find(end_marker)
     if start_idx == -1 or end_idx == -1 or end_idx < start_idx:
@@ -460,7 +647,6 @@ def update_marked_section(
 
 
 def validate_svg_xml(svg_text: str, name: str) -> None:
-    """Validate that generated SVG is well-formed XML with an <svg> root."""
     try:
         root = ET.fromstring(svg_text)
     except ET.ParseError as exc:
@@ -489,23 +675,21 @@ def generate_outputs(
     metrics: ProfileMetrics,
     readme_text: str,
 ) -> tuple[dict[str, str], str]:
-    """Generate and validate all SVG assets and updated README content in memory."""
     svg_files: dict[str, str] = {}
     for mode in ("dark", "light"):
-        hero_name = f"hero-{mode}.svg"
-        summary_name = f"summary-{mode}.svg"
-        hero_svg = render_hero_svg(mode, username=metrics.username)
-        summary_svg = render_summary_svg(metrics, mode)
-        validate_svg_xml(hero_svg, hero_name)
-        validate_svg_xml(summary_svg, summary_name)
-        svg_files[hero_name] = hero_svg
-        svg_files[summary_name] = summary_svg
+        batch: dict[str, str] = {
+            f"hero-{mode}.svg": render_hero_svg(mode, username=metrics.username),
+            f"stack-{mode}.svg": render_stack_svg(mode),
+            f"summary-{mode}.svg": render_summary_svg(metrics, mode),
+        }
+        batch.update(render_oss_cards(metrics, mode))
+        batch.update(render_project_cards(mode))
+        for filename, svg_text in batch.items():
+            validate_svg_xml(svg_text, filename)
+            svg_files[filename] = svg_text
 
     updated_readme = update_marked_section(
-        readme_text, OSS_START_MARKER, OSS_END_MARKER, render_oss_markdown(metrics)
-    )
-    updated_readme = update_marked_section(
-        updated_readme,
+        readme_text,
         ACTIVITY_START_MARKER,
         ACTIVITY_END_MARKER,
         render_activity_markdown(metrics),
@@ -516,7 +700,6 @@ def generate_outputs(
 def write_outputs_safely(
     base_dir: Path, svg_files: dict[str, str], updated_readme: str
 ) -> None:
-    """Atomically write validated SVG assets and README.md."""
     assets_dir = base_dir / "assets"
     assets_dir.mkdir(parents=True, exist_ok=True)
     for filename, content in svg_files.items():
@@ -525,7 +708,7 @@ def write_outputs_safely(
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Build Alhibb GitHub profile assets and README sections.")
+    parser = argparse.ArgumentParser(description="Build Alhibb GitHub profile card UI and README metrics.")
     parser.add_argument(
         "--base-dir",
         type=Path,
@@ -569,7 +752,7 @@ def main(argv: list[str] | None = None) -> int:
     svg_files, updated_readme = generate_outputs(metrics, readme_text)
     write_outputs_safely(base_dir, svg_files, updated_readme)
     print(
-        f"Updated {len(svg_files)} SVG assets and README.md for @{metrics.username} "
+        f"Updated {len(svg_files)} SVG card assets and README.md for @{metrics.username} "
         f"({metrics.updated_at_utc})."
     )
     return 0

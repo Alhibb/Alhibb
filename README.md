@@ -6,93 +6,69 @@
 
 I’m **Ibrahim Rabiu**, an AI and software engineer and founder of [DevClans Solution Ltd](https://devclans.org.ng) in Nigeria. I build AI agents, business automation, and web applications, and contribute to open-source tools for developers, data teams, and applied machine learning.
 
----
+### Open-Source Impact
 
-## Selected Open-Source Contributions
+<p align="center">
+  <a href="https://github.com/exmergo/dex/pulls?q=is%3Apr+author%3AAlhibb+is%3Amerged"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/oss-dex-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="./assets/oss-dex-light.svg" /><img alt="exmergo/dex — Merged PRs by @Alhibb" src="./assets/oss-dex-dark.svg" width="49%" /></picture></a>&nbsp;<a href="https://github.com/niceberginc/agentipy/pulls?q=is%3Apr+author%3AAlhibb+is%3Amerged"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/oss-agentipy-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="./assets/oss-agentipy-light.svg" /><img alt="niceberginc/agentipy — Merged PRs by @Alhibb" src="./assets/oss-agentipy-dark.svg" width="49%" /></picture></a>
+</p>
 
-<!-- OSS_IMPACT:START -->
-*42 merged PRs across the four featured upstream codebases below, plus 2 reproducible bug reports on Goose (updated 2026-11-19 12:49 UTC).*
+<p align="center">
+  <a href="https://github.com/sunlabuiuc/PyHealth/pulls?q=is%3Apr+author%3AAlhibb+is%3Amerged"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/oss-pyhealth-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="./assets/oss-pyhealth-light.svg" /><img alt="sunlabuiuc/PyHealth — Merged PRs by @Alhibb" src="./assets/oss-pyhealth-dark.svg" width="49%" /></picture></a>&nbsp;<a href="https://github.com/bshelby88/raen-bounties/pull/28"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/oss-raen-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="./assets/oss-raen-light.svg" /><img alt="bshelby88/raen-bounties — Merged PR #28 by @Alhibb" src="./assets/oss-raen-dark.svg" width="49%" /></picture></a>
+</p>
 
-### [exmergo/dex](https://github.com/exmergo/dex) — 21 merged PRs (1 open PR under review)
-Open-source Python, SQL, and dbt data-engineering toolkit. Contributed incremental test scaffolding fixes, Cube token scope enforcement, semantic layer validation, YAML variable reference discovery, and DuckDB end-to-end test coverage.
-- **Selected PRs:** [Cube `dex_scopes` enforcement (#1175)](https://github.com/exmergo/dex/pull/1175) · [Incremental test scaffold fix (#1144)](https://github.com/exmergo/dex/pull/1144)
-- **Verify:** [All merged PRs by @Alhibb](https://github.com/exmergo/dex/pulls?q=is%3Apr+author%3AAlhibb+is%3Amerged)
+<p align="center">
+  <a href="https://github.com/aaif-goose/goose/issues?q=is%3Aissue+author%3AAlhibb"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/oss-goose-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="./assets/oss-goose-light.svg" /><img alt="aaif-goose/goose — Reproducible CLI bug reports by @Alhibb" src="./assets/oss-goose-dark.svg" width="100%" /></picture></a>
+</p>
 
-### [niceberginc/agentipy](https://github.com/niceberginc/agentipy) — 15 merged PRs (2 open PRs)
-Python toolkit for connecting AI agents to Solana protocols and data sources. Contributed Windows `asyncio`/`aiodns` compatibility, Jupiter and CoinGecko integrations, Solana RPC response handling, LangChain/RugCheck tooling, a Discord MCP server, and examples.
-- **Selected PRs:** [Windows `aiodns` event-loop fix (#69)](https://github.com/niceberginc/agentipy/pull/69) · [Discord MCP server (#137)](https://github.com/niceberginc/agentipy/pull/137)
-- **Verify:** [All merged PRs by @Alhibb](https://github.com/niceberginc/agentipy/pulls?q=is%3Apr+author%3AAlhibb+is%3Amerged)
+<p align="center">
+  <sub>Selected PRs &amp; reports: <a href="https://github.com/exmergo/dex/pull/1175">dex #1175</a> · <a href="https://github.com/exmergo/dex/pull/1144">dex #1144</a> · <a href="https://github.com/niceberginc/agentipy/pull/69">agentipy #69</a> · <a href="https://github.com/niceberginc/agentipy/pull/137">agentipy #137</a> · <a href="https://github.com/sunlabuiuc/PyHealth/pull/1517">PyHealth #1517</a> · <a href="https://github.com/sunlabuiuc/PyHealth/pull/1530">PyHealth #1530</a> · <a href="https://github.com/bshelby88/raen-bounties/pull/28">raen #28</a> · <a href="https://github.com/aaif-goose/goose/issues/13296">goose #13296</a> · <a href="https://github.com/aaif-goose/goose/issues/13547">goose #13547</a></sub>
+</p>
 
-### [sunlabuiuc/PyHealth](https://github.com/sunlabuiuc/PyHealth) — 5 merged PRs (1 open PR under review)
-Open-source deep learning framework for healthcare and electronic health records. Implemented and integrated published clinical models—BEHRT, BiteNet, UDC, and DescEmb—in `pyhealth.models`, plus a group-conditional fair conformal predictor in `pyhealth.calib`.
-- **Selected PRs:** [BEHRT EHR model integration (#1517)](https://github.com/sunlabuiuc/PyHealth/pull/1517) · [DescEmb code-embedding model integration (#1530)](https://github.com/sunlabuiuc/PyHealth/pull/1530)
-- **Verify:** [All merged PRs by @Alhibb](https://github.com/sunlabuiuc/PyHealth/pulls?q=is%3Apr+author%3AAlhibb+is%3Amerged)
+### Selected Projects
 
-### [bshelby88/raen-bounties](https://github.com/bshelby88/raen-bounties) — 1 merged PR
-Python CLI for x402 micropayment workflows. Replaced ad-hoc EIP-712/EIP-3009 signing with standards-compliant typed-data signing via `eth-account`, fixing challenge handling, nonce consistency, spending limits, and test coverage.
-- **Verify:** [Standards-compliant EIP-3009 signing & x402 handling (#28)](https://github.com/bshelby88/raen-bounties/pull/28)
+<p align="center">
+  <a href="https://github.com/Alhibb/metropolis_tradeguard"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/proj-tradeguard-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="./assets/proj-tradeguard-light.svg" /><img alt="TradeGuard (metropolis_tradeguard) — Testnet demo" src="./assets/proj-tradeguard-dark.svg" width="49%" /></picture></a>&nbsp;<a href="https://github.com/Alhibb/EvidenceShift"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/proj-evidenceshift-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="./assets/proj-evidenceshift-light.svg" /><img alt="EvidenceShift — Research project" src="./assets/proj-evidenceshift-dark.svg" width="49%" /></picture></a>
+</p>
 
-### [aaif-goose/goose](https://github.com/aaif-goose/goose) — 2 bug reports (issues, not code PRs)
-Open-source developer agent CLI. Filed reproducible CLI bug reports with isolated scripts, synthetic fixtures, and logs covering a session HTML export panic when piped to `head` and misleading `--resume` flag help output.
-- **Verify:** [Session HTML export pipe panic (#13296)](https://github.com/aaif-goose/goose/issues/13296) · [Unsupported `--resume` help output (#13547)](https://github.com/aaif-goose/goose/issues/13547)
-<!-- OSS_IMPACT:END -->
+<p align="center">
+  <a href="https://github.com/Alhibb/CloudCompassAI"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/proj-cloudcompass-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="./assets/proj-cloudcompass-light.svg" /><img alt="CloudCompass AI — Web prototype" src="./assets/proj-cloudcompass-dark.svg" width="49%" /></picture></a>&nbsp;<a href="https://github.com/Alhibb/ai-tutoring-rag"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/proj-tutoring-rag-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="./assets/proj-tutoring-rag-light.svg" /><img alt="AI Tutoring RAG — Prototype" src="./assets/proj-tutoring-rag-dark.svg" width="49%" /></picture></a>
+</p>
 
----
+<p align="center">
+  <sub>Verified demos &amp; docs: <a href="https://cloudcompassai.vercel.app">CloudCompass AI Live Demo ↗</a> · <a href="https://github.com/Alhibb/EvidenceShift/blob/main/evidenceshift_v2/README.md">EvidenceShift v2 Protocol ↗</a></sub>
+</p>
 
-## Selected Projects
+### Capabilities
 
-### [TradeGuard (`metropolis_tradeguard`)](https://github.com/Alhibb/metropolis_tradeguard) · *Testnet demo*
-- **Problem:** Physical-trade delivery disputes often lack a unified record connecting agreed terms, delivery evidence, and settlement decisions.
-- **Implementation:** Combines human-reviewed Qwen term extraction from trade agreements, delivery evidence tracking, a local rehearsal sandbox, and Solidity escrow contracts on Monad testnet with wallet-enforced buyer, supplier, and arbitrator roles. Built by DevClans as the canonical Metropolis hackathon showcase (superseding the earlier `Alhibb/TradeGuard` working draft).
-- **Stack:** JavaScript, TypeScript, Solidity, Qwen
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/stack-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="./assets/stack-light.svg" />
+  <img alt="Technical capabilities across AI &amp; Applied ML, Backend &amp; Tooling, Data Engineering, Web Applications, and Blockchain" src="./assets/stack-dark.svg" width="100%" />
+</picture>
 
-### [EvidenceShift](https://github.com/Alhibb/EvidenceShift) · *Research project*
-- **Problem:** Evaluating how LLM assistants handle conflicting dates, source authority, and incomplete evidence requires controlled, reproducible benchmarks rather than ad-hoc prompting.
-- **Implementation:** Zero-dependency Python evaluation harness ([`evidenceshift_v2`](https://github.com/Alhibb/EvidenceShift/blob/main/evidenceshift_v2/README.md)) with 40 structured test cases, strict output scoring, paired family-bootstrap analysis, blinded review exports, SHA-256 checksums, and a `unittest` test suite.
-- **Stack:** Python (standard library), `unittest`
-
-### [CloudCompass AI](https://github.com/Alhibb/CloudCompassAI) · *Web prototype*
-- **Problem:** Designing and iterating on AWS cloud architectures manually is slow for cloud and DevOps engineers.
-- **Implementation:** Visual AWS architecture designer combining an interactive React Flow canvas, AWS Bedrock runtime integration, Supabase backend, and diagram image export.
-- **Stack:** TypeScript, Next.js, React Flow, AWS Bedrock, Supabase, Tailwind CSS
-- **Links:** [Repository](https://github.com/Alhibb/CloudCompassAI) · [Live Demo](https://cloudcompassai.vercel.app)
-
-### [AI Tutoring RAG](https://github.com/Alhibb/ai-tutoring-rag) · *Prototype*
-- **Problem:** High student-to-lecturer ratios in large public universities limit individualized academic support.
-- **Implementation:** Retrieval-augmented tutoring application with a student portal and administrator dashboard, indexing course material in ChromaDB and generating grounded explanations via Google Gemini with SQLite persistence.
-- **Stack:** Python, Streamlit, ChromaDB, Google Gemini API, SQLite
-
----
-
-## Technical Capabilities
-
-- **AI & Applied ML:** AI agents, RAG pipelines, LLM evaluation harnesses, PyTorch, clinical/EHR model integration & uncertainty calibration (`PyHealth`).
-- **Backend & Tooling:** Python, REST/GraphQL APIs, MCP servers, CLI engineering, `asyncio`, automated regression & end-to-end testing.
-- **Data & Analytics Engineering:** SQL, dbt, DuckDB, semantic layer validation, Cube configuration.
-- **Web Applications:** TypeScript, JavaScript, Next.js, React, Tailwind CSS, Supabase.
-- **Blockchain Integrations:** Solidity, EIP-712/EIP-3009 typed-data signing, x402 payment flows, Solana RPC & Monad testnet workflows.
-
----
-
-## Activity Summary
+### Activity
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/summary-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="./assets/summary-light.svg" />
-  <img alt="Periodically updated public GitHub activity summary for Ibrahim Rabiu (@Alhibb)." src="./assets/summary-dark.svg" width="100%" />
+  <img alt="Periodically updated public GitHub activity summary for Ibrahim Rabiu (@Alhibb)" src="./assets/summary-dark.svg" width="100%" />
 </picture>
 
+<p align="center">
 <!-- ACTIVITY_SUMMARY:START -->
-Public GitHub summary (updated 2026-11-19 12:49 UTC): **42 merged PRs** across the four featured upstream repositories, **206 contributions** in the rolling 12-month public calendar, and **2 bug reports** filed on `aaif-goose/goose`.
+<sub>Updated 2026-11-19 11:46 UTC · <strong>42 merged PRs</strong> across featured upstream projects (<code>exmergo/dex</code>: 21, <code>agentipy</code>: 15, <code>PyHealth</code>: 5, <code>raen-bounties</code>: 1) · <strong>199</strong> rolling-year public contributions · <strong>2 bug reports</strong> on <code>aaif-goose/goose</code>.</sub>
 <!-- ACTIVITY_SUMMARY:END -->
+</p>
 
----
+<br />
 
-## Contact
+<p align="center">
+  <a href="https://alhibb.devclans.org.ng"><img src="https://img.shields.io/badge/Portfolio-09090B?style=for-the-badge&logo=vercel&logoColor=22D3EE" alt="Portfolio" /></a>
+  <a href="https://devclans.org.ng"><img src="https://img.shields.io/badge/DevClans-09090B?style=for-the-badge&logo=globe&logoColor=A855F7" alt="DevClans Solution Ltd" /></a>
+  <a href="https://www.linkedin.com/in/alhibb/"><img src="https://img.shields.io/badge/LinkedIn-09090B?style=for-the-badge&logo=linkedin&logoColor=0A66C2" alt="LinkedIn" /></a>
+  <a href="mailto:alhibb01@gmail.com"><img src="https://img.shields.io/badge/Email-09090B?style=for-the-badge&logo=gmail&logoColor=EA4335" alt="Email" /></a>
+</p>
 
-- **Portfolio:** [alhibb.devclans.org.ng](https://alhibb.devclans.org.ng)
-- **Company:** [DevClans Solution Ltd](https://devclans.org.ng)
-- **LinkedIn:** [linkedin.com/in/alhibb](https://www.linkedin.com/in/alhibb/)
-- **Email:** [alhibb01@gmail.com](mailto:alhibb01@gmail.com)
-
-*Elsewhere:* [X (@I_Bakondare)](https://x.com/I_Bakondare) · [Hugging Face (@Alhibb)](https://huggingface.co/Alhibb) · [Dev.to (@alhibb)](https://dev.to/alhibb) · [Telegram (@alhibb)](https://t.me/alhibb) · Discord: `@alhibb`
+<p align="center">
+  <sub><a href="https://x.com/I_Bakondare">X (@I_Bakondare)</a> · <a href="https://huggingface.co/Alhibb">Hugging Face</a> · <a href="https://dev.to/alhibb">Dev.to</a> · <a href="https://t.me/alhibb">Telegram</a> · Discord: <code>@alhibb</code></sub>
+</p>

@@ -24,10 +24,7 @@
   <rect x="32" y="0" width="136" height="3" rx="1.5" fill="url(#accent-bar-light)"/>
 
   <text x="32" y="42" fill="#52525B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="600" letter-spacing="1.2">DEVCLANS SOLUTION LTD · NIGERIA</text>
-
   <text x="32" y="96" fill="#09090B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="-0.8">Ibrahim Rabiu <tspan dx="10" fill="#52525B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20" font-weight="500" letter-spacing="0">@Alhibb</tspan></text>
-
   <text x="32" y="133" fill="#0284C7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" font-weight="600">AI &amp; Software Engineer</text>
-
   <text x="32" y="166" fill="#3F3F46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17.5" font-weight="400">AI Agents · Applied ML · Developer Tooling</text>
 </svg>

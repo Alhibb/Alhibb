@@ -1,0 +1,66 @@
+<svg width="840" height="224" viewBox="0 0 840 224" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Technical capabilities across AI &amp; Applied ML, Backend &amp; Tooling, Data Engineering, Web Applications, and Blockchain">
+  <rect width="840" height="224" rx="16" fill="#FAFAFA" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="24" y="44" fill="#09090B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600">AI &amp; Applied ML</text>
+  <rect x="186" y="28" width="82" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="227.0" y="44" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">AI Agents</text>
+  <rect x="276" y="28" width="109" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="330.5" y="44" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">RAG Pipelines</text>
+  <rect x="393" y="28" width="75" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="430.5" y="44" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">LLM Eval</text>
+  <rect x="476" y="28" width="68" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="510.0" y="44" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">PyTorch</text>
+  <rect x="552" y="28" width="178" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="641.0" y="44" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">Clinical EHR / PyHealth</text>
+  <line x1="24" y1="58" x2="816" y2="58" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="24" y="82" fill="#09090B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600">Backend &amp; Tooling</text>
+  <rect x="186" y="66" width="61" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="216.5" y="82" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">Python</text>
+  <rect x="255" y="66" width="68" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="289.0" y="82" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">FastAPI</text>
+  <rect x="331" y="66" width="95" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="378.5" y="82" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">MCP Servers</text>
+  <rect x="434" y="66" width="95" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="481.5" y="82" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">CLI Tooling</text>
+  <rect x="537" y="66" width="68" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="571.0" y="82" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">asyncio</text>
+  <rect x="613" y="66" width="116" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="671.0" y="82" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">REST / GraphQL</text>
+  <line x1="24" y1="96" x2="816" y2="96" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="24" y="120" fill="#09090B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600">Data Engineering</text>
+  <rect x="186" y="104" width="40" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="206.0" y="120" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">SQL</text>
+  <rect x="234" y="104" width="40" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="254.0" y="120" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">dbt</text>
+  <rect x="282" y="104" width="61" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="312.5" y="120" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">DuckDB</text>
+  <rect x="351" y="104" width="151" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="426.5" y="120" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">Semantic Validation</text>
+  <rect x="510" y="104" width="47" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="533.5" y="120" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">Cube</text>
+  <line x1="24" y1="134" x2="816" y2="134" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="24" y="158" fill="#09090B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600">Web Applications</text>
+  <rect x="186" y="142" width="89" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="230.5" y="158" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">TypeScript</text>
+  <rect x="283" y="142" width="89" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="327.5" y="158" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">JavaScript</text>
+  <rect x="380" y="142" width="68" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="414.0" y="158" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">Next.js</text>
+  <rect x="456" y="142" width="54" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="483.0" y="158" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">React</text>
+  <rect x="518" y="142" width="102" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="569.0" y="158" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">Tailwind CSS</text>
+  <rect x="628" y="142" width="75" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="665.5" y="158" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">Supabase</text>
+  <line x1="24" y1="172" x2="816" y2="172" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="24" y="196" fill="#09090B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600">Blockchain</text>
+  <rect x="186" y="180" width="75" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="223.5" y="196" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">Solidity</text>
+  <rect x="269" y="180" width="144" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="341.0" y="196" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">EIP-712 / EIP-3009</text>
+  <rect x="421" y="180" width="47" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="444.5" y="196" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">x402</text>
+  <rect x="476" y="180" width="89" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="520.5" y="196" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">Solana RPC</text>
+  <rect x="573" y="180" width="109" height="24" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="627.5" y="196" text-anchor="middle" fill="#3F3F46" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">Monad Testnet</text>
+</svg>

@@ -49,12 +49,6 @@ SAMPLE_README = f"""# Header
 
 Hand-authored intro.
 
-{build_ui.OSS_START_MARKER}
-stale oss
-{build_ui.OSS_END_MARKER}
-
-Hand-authored projects.
-
 {build_ui.ACTIVITY_START_MARKER}
 stale activity
 {build_ui.ACTIVITY_END_MARKER}
@@ -64,7 +58,7 @@ Hand-authored footer.
 
 
 class TestBuildUI(unittest.TestCase):
-    def test_featured_totals_and_status_distinctions(self) -> None:
+    def test_featured_totals_and_card_badges(self) -> None:
         metrics = build_ui.normalize_and_validate(
             sample_raw_payload(),
             username="Alhibb",
@@ -74,21 +68,19 @@ class TestBuildUI(unittest.TestCase):
         self.assertEqual(metrics.featured_open_total, 4)
         self.assertEqual(metrics.goose_issues, 2)
 
-        oss_md = build_ui.render_oss_markdown(metrics)
-        self.assertIn("42 merged PRs", oss_md)
-        self.assertIn("21 merged PRs (1 open PR under review)", oss_md)
-        self.assertIn("15 merged PRs (2 open PRs)", oss_md)
-        self.assertIn("5 merged PRs (1 open PR under review)", oss_md)
-        self.assertIn("1 merged PR", oss_md)
-        self.assertIn("2 bug reports (issues, not code PRs)", oss_md)
+        cards = build_ui.render_oss_cards(metrics, "dark")
+        self.assertIn("21 MERGED", cards["oss-dex-dark.svg"])
+        self.assertIn("15 MERGED", cards["oss-agentipy-dark.svg"])
+        self.assertIn("5 MERGED · +1 OPEN", cards["oss-pyhealth-dark.svg"])
+        self.assertIn("1 MERGED", cards["oss-raen-dark.svg"])
+        self.assertIn("2 BUG REPORTS", cards["oss-goose-dark.svg"])
 
     def test_empty_and_malformed_data_rejected(self) -> None:
         with self.assertRaises(build_ui.ValidationError):
             build_ui.normalize_and_validate({})
 
-        bad_negative = sample_raw_payload(dex_merged=-1)
         with self.assertRaises(build_ui.ValidationError):
-            build_ui.normalize_and_validate(bad_negative)
+            build_ui.normalize_and_validate(sample_raw_payload(dex_merged=-1))
 
         bad_bool = sample_raw_payload()
         bad_bool["raenMerged"]["issueCount"] = True
@@ -114,21 +106,22 @@ class TestBuildUI(unittest.TestCase):
         self.assertIn("Ibrahim &amp; &lt;Rabiu&gt; &quot;Dev&quot;", svg)
         self.assertIn("@Alhibb&#x27;s", svg)
 
-    def test_dark_and_light_theme_factual_parity(self) -> None:
+    def test_dark_and_light_theme_factual_parity_across_all_cards(self) -> None:
         metrics = build_ui.normalize_and_validate(
             sample_raw_payload(),
             username="Alhibb",
             updated_at_utc="2026-11-19 11:46 UTC",
         )
-        dark_svg = build_ui.render_summary_svg(metrics, "dark")
-        light_svg = build_ui.render_summary_svg(metrics, "light")
+        svgs, _ = build_ui.generate_outputs(metrics, SAMPLE_README)
+        self.assertEqual(len(svgs), 24)
 
-        dark_texts = [el.text for el in ET.fromstring(dark_svg).iter() if el.text and el.text.strip()]
-        light_texts = [el.text for el in ET.fromstring(light_svg).iter() if el.text and el.text.strip()]
-        self.assertEqual(dark_texts, light_texts)
-        self.assertIn("42 merged", dark_texts)
-        self.assertIn("199", dark_texts)
-        self.assertIn("2 filed", dark_texts)
+        dark_names = sorted(k for k in svgs if k.endswith("-dark.svg"))
+        for dark_name in dark_names:
+            light_name = dark_name.replace("-dark.svg", "-light.svg")
+            self.assertIn(light_name, svgs)
+            dark_texts = [el.text.strip() for el in ET.fromstring(svgs[dark_name]).iter() if el.text and el.text.strip()]
+            light_texts = [el.text.strip() for el in ET.fromstring(svgs[light_name]).iter() if el.text and el.text.strip()]
+            self.assertEqual(dark_texts, light_texts, f"Parity mismatch for {dark_name}")
 
     def test_marked_sections_preserve_surrounding_content_and_are_deterministic(self) -> None:
         metrics = build_ui.normalize_and_validate(
@@ -142,9 +135,7 @@ class TestBuildUI(unittest.TestCase):
         self.assertEqual(svgs_a, svgs_b)
         self.assertEqual(readme_a, readme_b)
         self.assertIn("Hand-authored intro.", readme_a)
-        self.assertIn("Hand-authored projects.", readme_a)
         self.assertIn("Hand-authored footer.", readme_a)
-        self.assertNotIn("stale oss", readme_a)
         self.assertNotIn("stale activity", readme_a)
 
     def test_failure_preserves_last_good_outputs(self) -> None:

@@ -1,0 +1,17 @@
+<svg width="414" height="156" viewBox="0 0 414 156" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="bshelby88/raen-bounties — 1 merged PR by @Alhibb">
+  <rect width="414" height="156" rx="14" fill="#FAFAFA" stroke="#E4E4E7" stroke-width="1"/>
+  <circle cx="26" cy="30" r="4.5" fill="#22C55E"/>
+  <text x="40" y="35" fill="#09090B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600">bshelby88/raen-bounties</text>
+  <rect x="316" y="19" width="78" height="22" rx="6" fill="#F3E8FF"/>
+  <text x="355.0" y="34" text-anchor="middle" fill="#6B21A8" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="600">1 MERGED</text>
+  <text x="20" y="69" fill="#3F3F46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13">Standards-compliant EIP-712/EIP-3009 signing via</text>
+  <text x="20" y="89" fill="#3F3F46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13">eth-account, x402 challenge handling &amp; test suite.</text>
+  <line x1="20" y1="106" x2="394" y2="106" stroke="#E4E4E7" stroke-width="1"/>
+  <rect x="20" y="118" width="86" height="22" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="63.0" y="133" text-anchor="middle" fill="#52525B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="500">Python CLI</text>
+  <rect x="113" y="118" width="72" height="22" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="149.0" y="133" text-anchor="middle" fill="#52525B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="500">EIP-3009</text>
+  <rect x="192" y="118" width="45" height="22" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="214.5" y="133" text-anchor="middle" fill="#52525B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="500">x402</text>
+  <text x="394" y="134" text-anchor="end" fill="#52525B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15">↗</text>
+</svg>
