@@ -1,10 +1,11 @@
-name: Sync Live Profile Bento UI
+name: Update Profile Assets & Metrics
 
 on:
   push:
     branches: [main]
     paths:
-      - "scripts/build_ui.py"
+      - "scripts/**"
+      - "tests/**"
       - ".github/workflows/update-ui.yml"
   schedule:
     - cron: "0 */6 * * *"
@@ -13,22 +14,33 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: update-profile-ui
+  cancel-in-progress: false
+
 jobs:
-  build-ui:
+  update-profile:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - name: Checkout profile repo
+      - name: Checkout profile repository
         uses: actions/checkout@v4
 
-      - name: Generate live Bento SVG cards
+      - name: Run generator unit tests
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Refresh SVG assets and README metrics
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_ACTOR: Alhibb
+          PROFILE_USERNAME: Alhibb
         run: python3 scripts/build_ui.py
 
-      - name: Commit updated Bento UI
+      - name: Commit updated profile outputs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/
-          git diff --cached --quiet || (git commit -m "chore(ui): refresh live bento telemetry [skip ci]" && git push)
+          git add assets/hero-dark.svg assets/hero-light.svg assets/summary-dark.svg assets/summary-light.svg README.md
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(profile): refresh public GitHub activity and SVG assets [skip ci]"
+            git push
+          fi

@@ -1,14 +1,14 @@
-<svg width="900" height="218" viewBox="0 0 900 218" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="840" height="196" viewBox="0 0 840 196" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ibrahim Rabiu (@Alhibb) — AI &amp; Software Engineer">
   <defs>
     <pattern id="dots-dark" width="20" height="20" patternUnits="userSpaceOnUse">
-      <circle cx="2" cy="2" r="0.9" fill="#27272A" opacity="0.7"/>
+      <circle cx="2" cy="2" r="0.9" fill="#27272A" opacity="0.65"/>
     </pattern>
-    <radialGradient id="glow1-dark" cx="85%" cy="15%" r="55%">
-      <stop offset="0%" stop-color="#22D3EE" stop-opacity="0.18"/>
+    <radialGradient id="glow1-dark" cx="88%" cy="18%" r="55%">
+      <stop offset="0%" stop-color="#22D3EE" stop-opacity="0.16"/>
       <stop offset="100%" stop-color="#09090B" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="glow2-dark" cx="15%" cy="0%" r="45%">
-      <stop offset="0%" stop-color="#A855F7" stop-opacity="0.18"/>
+    <radialGradient id="glow2-dark" cx="14%" cy="5%" r="48%">
+      <stop offset="0%" stop-color="#A855F7" stop-opacity="0.16"/>
       <stop offset="100%" stop-color="#09090B" stop-opacity="0"/>
     </radialGradient>
     <linearGradient id="accent-bar-dark" x1="0" y1="0" x2="1" y2="0">
@@ -16,28 +16,18 @@
       <stop offset="100%" stop-color="#A855F7"/>
     </linearGradient>
   </defs>
-  <rect width="900" height="218" rx="16" fill="#09090B" stroke="#27272A" stroke-width="1"/>
-  <rect x="1" y="1" width="898" height="216" rx="15" fill="url(#dots-dark)"/>
-  <rect x="1" y="1" width="898" height="216" rx="15" fill="url(#glow1-dark)"/>
-  <rect x="1" y="1" width="898" height="216" rx="15" fill="url(#glow2-dark)"/>
-  <rect x="28" y="0" width="120" height="2.5" rx="1.25" fill="url(#accent-bar-dark)"/>
 
-  <!-- Top telemetry bar -->
-  <circle cx="34" cy="32" r="4" fill="#22C55E">
-    <animate attributeName="opacity" values="1;0.3;1" dur="2.4s" repeatCount="indefinite"/>
-  </circle>
-  <text x="46" y="36" fill="#A1A1AA" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5">~/alhibb  ·  alhibb.devclans.org.ng</text>
+  <rect width="840" height="196" rx="16" fill="#09090B" stroke="#27272A" stroke-width="1"/>
+  <rect x="1" y="1" width="838" height="194" rx="15" fill="url(#dots-dark)"/>
+  <rect x="1" y="1" width="838" height="194" rx="15" fill="url(#glow1-dark)"/>
+  <rect x="1" y="1" width="838" height="194" rx="15" fill="url(#glow2-dark)"/>
+  <rect x="32" y="0" width="136" height="3" rx="1.5" fill="url(#accent-bar-dark)"/>
 
-  <rect x="742" y="19" width="130" height="24" rx="12" fill="#18181B" stroke="#27272A" stroke-width="1"/>
-  <text x="807" y="35" text-anchor="middle" fill="#A1A1AA" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5">SYNCED · NOV 19</text>
+  <text x="32" y="42" fill="#A1A1AA" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="600" letter-spacing="1.2">DEVCLANS SOLUTION LTD · NIGERIA</text>
 
-  <!-- Main identity -->
-  <text x="28" y="86" fill="#FAFAFA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="34" font-weight="700" letter-spacing="-0.8">Ibrahim Rabiu <tspan dx="8" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="400" letter-spacing="0">@Alhibb</tspan></text>
-  <text x="28" y="114" fill="#A1A1AA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14.5">AI &amp; Systems Engineer  ·  Open-Source Contributor  ·  Applied ML &amp; Developer Tooling</text>
+  <text x="32" y="96" fill="#FAFAFA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="-0.8">Ibrahim Rabiu <tspan dx="10" fill="#A1A1AA" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20" font-weight="500" letter-spacing="0">@Alhibb</tspan></text>
 
-  <!-- Hairline divider -->
-  <line x1="28" y1="138" x2="872" y2="138" stroke="#27272A" stroke-width="1"/>
+  <text x="32" y="133" fill="#22D3EE" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" font-weight="600">AI &amp; Software Engineer</text>
 
-  <!-- Live KPI strip -->
-  <text x="28" y="168" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" letter-spacing="0.8">CONTRIBUTIONS (1Y)</text><text x="28" y="194" fill="#FAFAFA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700">199</text><line x1="226" y1="154" x2="226" y2="196" stroke="#27272A" stroke-width="1"/><text x="240" y="168" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" letter-spacing="0.8">PUBLIC REPOS</text><text x="240" y="194" fill="#FAFAFA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700">134</text><line x1="438" y1="154" x2="438" y2="196" stroke="#27272A" stroke-width="1"/><text x="452" y="168" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" letter-spacing="0.8">PULL REQUESTS</text><text x="452" y="194" fill="#FAFAFA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700">88</text><line x1="650" y1="154" x2="650" y2="196" stroke="#27272A" stroke-width="1"/><text x="664" y="168" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" letter-spacing="0.8">STARS EARNED</text><text x="664" y="194" fill="#FAFAFA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700">3</text>
+  <text x="32" y="166" fill="#D4D4D8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17.5" font-weight="400">AI Agents · Applied ML · Developer Tooling</text>
 </svg>
