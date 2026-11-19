@@ -20,12 +20,12 @@
   <line x1="24" y1="186" x2="416" y2="186" stroke="#27272A"/>
 
   <!-- Area & Line -->
-  <path d="M 24.0 184.0 L 39.7 184.0 L 55.4 184.0 L 71.0 184.0 L 86.7 184.0 L 102.4 186.0 L 118.1 186.0 L 133.8 178.0 L 149.4 186.0 L 165.1 182.0 L 180.8 184.0 L 196.5 186.0 L 212.2 178.0 L 227.8 186.0 L 243.5 186.0 L 259.2 186.0 L 274.9 186.0 L 290.6 186.0 L 306.2 168.0 L 321.9 176.0 L 337.6 184.0 L 353.3 186.0 L 369.0 186.0 L 384.6 154.0 L 400.3 162.0 L 416.0 86.0 L 416.0 186 L 24.0 186 Z" fill="url(#area-dark)"/>
-  <path d="M 24.0 184.0 L 39.7 184.0 L 55.4 184.0 L 71.0 184.0 L 86.7 184.0 L 102.4 186.0 L 118.1 186.0 L 133.8 178.0 L 149.4 186.0 L 165.1 182.0 L 180.8 184.0 L 196.5 186.0 L 212.2 178.0 L 227.8 186.0 L 243.5 186.0 L 259.2 186.0 L 274.9 186.0 L 290.6 186.0 L 306.2 168.0 L 321.9 176.0 L 337.6 184.0 L 353.3 186.0 L 369.0 186.0 L 384.6 154.0 L 400.3 162.0 L 416.0 86.0" fill="none" stroke="#22D3EE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 24.0 184.0 L 39.7 184.0 L 55.4 184.0 L 71.0 184.0 L 86.7 184.0 L 102.4 186.0 L 118.1 186.0 L 133.8 178.2 L 149.4 186.0 L 165.1 182.1 L 180.8 184.0 L 196.5 186.0 L 212.2 178.2 L 227.8 186.0 L 243.5 186.0 L 259.2 186.0 L 274.9 186.0 L 290.6 186.0 L 306.2 168.4 L 321.9 176.2 L 337.6 184.0 L 353.3 186.0 L 369.0 186.0 L 384.6 154.6 L 400.3 162.5 L 416.0 86.0 L 416.0 186 L 24.0 186 Z" fill="url(#area-dark)"/>
+  <path d="M 24.0 184.0 L 39.7 184.0 L 55.4 184.0 L 71.0 184.0 L 86.7 184.0 L 102.4 186.0 L 118.1 186.0 L 133.8 178.2 L 149.4 186.0 L 165.1 182.1 L 180.8 184.0 L 196.5 186.0 L 212.2 178.2 L 227.8 186.0 L 243.5 186.0 L 259.2 186.0 L 274.9 186.0 L 290.6 186.0 L 306.2 168.4 L 321.9 176.2 L 337.6 184.0 L 353.3 186.0 L 369.0 186.0 L 384.6 154.6 L 400.3 162.5 L 416.0 86.0" fill="none" stroke="#22D3EE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
   <circle cx="416.0" cy="86.0" r="4" fill="#22D3EE"/>
 
   <!-- Bottom velocity metrics -->
-  <text x="24" y="220" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">PEAK <tspan fill="#FAFAFA" font-weight="600">50/wk</tspan>   ·   STREAK <tspan fill="#FAFAFA" font-weight="600">5d</tspan>   ·   LAST 6M <tspan fill="#FAFAFA" font-weight="600">109</tspan></text>
+  <text x="24" y="220" fill="#71717A" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">PEAK <tspan fill="#FAFAFA" font-weight="600">51/wk</tspan>   ·   STREAK <tspan fill="#FAFAFA" font-weight="600">5d</tspan>   ·   LAST 6M <tspan fill="#FAFAFA" font-weight="600">110</tspan></text>
 
   <!-- Right Bento Card: Codebase Telemetry -->
   <rect x="458" y="0" width="442" height="248" rx="16" fill="#111114" stroke="#27272A" stroke-width="1"/>
