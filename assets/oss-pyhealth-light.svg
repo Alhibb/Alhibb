@@ -3,7 +3,7 @@
   <circle cx="26" cy="30" r="4.5" fill="#A855F7"/>
   <text x="40" y="35" fill="#09090B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600">sunlabuiuc/PyHealth</text>
   <rect x="245" y="19" width="149" height="22" rx="6" fill="#F3E8FF"/>
-  <text x="319.5" y="34" text-anchor="middle" fill="#6B21A8" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="600">5 MERGED · +1 OPEN</text>
+  <text x="319.5" y="34" text-anchor="middle" fill="#6B21A8" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="600">5 MERGED · +2 OPEN</text>
   <text x="20" y="69" fill="#3F3F46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13">Integrated BEHRT, BiteNet, UDC &amp; DescEmb EHR models</text>
   <text x="20" y="89" fill="#3F3F46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13">plus group-conditional fair conformal calibration.</text>
   <line x1="20" y1="106" x2="394" y2="106" stroke="#E4E4E7" stroke-width="1"/>
