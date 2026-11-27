@@ -42,6 +42,12 @@ I’m **Ibrahim Rabiu**, an AI systems engineer, open-source contributor, and in
   <sub>Verified sites &amp; docs: <a href="https://alhibb.github.io/agentconform-website/">AgentConform Research Site ↗</a> · <a href="https://cloudcompassai.vercel.app">CloudCompass AI Live Demo ↗</a> · <a href="https://github.com/Alhibb/EvidenceShift/blob/main/evidenceshift_v2/README.md">EvidenceShift v2 Protocol ↗</a></sub>
 </p>
 
+### Recognition
+
+<p align="center">
+  <a href="https://www.linkedin.com/posts/tempolabs_tempochallenge-builtontempo-designengineering-activity-7407796902039265280-aDBo"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rec-tempo-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="./assets/rec-tempo-light.svg" /><img alt="Tempo (YC S23) x Contra — 1st Place with CloudCompass AI" src="./assets/rec-tempo-dark.svg" width="49%" /></picture></a>&nbsp;<a href="https://github.com/chalkbadger/stay-safe/issues/109"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rec-staysafe-dark.svg" /><source media="(prefers-color-scheme: light)" srcset="./assets/rec-staysafe-light.svg" /><img alt="Stay-Safe Research Bounty (#109) — 3 accepted Codex report challenges" src="./assets/rec-staysafe-dark.svg" width="49%" /></picture></a>
+</p>
+
 ### Capabilities
 
 <picture>

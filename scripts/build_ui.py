@@ -88,7 +88,7 @@ PROJECT_CARDS: list[dict[str, Any]] = [
     {
         "slug": "cloudcompass",
         "title": "CloudCompass AI",
-        "badge": "WEB PROTOTYPE",
+        "badge": "1ST PLACE · TEMPO",
         "badge_tone": "green",
         "dot_color": "#22C55E",
         "line1": "Visual AWS architecture designer with React Flow,",
@@ -117,6 +117,31 @@ PROJECT_CARDS: list[dict[str, Any]] = [
         "line2": "notes in ChromaDB with Gemini RAG & SQLite storage.",
         "tags": ["Python", "Streamlit", "ChromaDB", "Gemini"],
         "repo": "Alhibb/ai-tutoring-rag",
+    },
+]
+
+RECOGNITION_CARDS: list[dict[str, Any]] = [
+    {
+        "slug": "tempo",
+        "title": "Tempo (YC S23) × Contra",
+        "badge": "1ST PLACE",
+        "badge_tone": "green",
+        "dot_color": "#22C55E",
+        "line1": "Won the Tempo × Contra design-engineering challenge",
+        "line2": "with CloudCompass AI (Next.js, React Flow, Bedrock).",
+        "tags": ["CloudCompass AI", "AWS", "Official Post"],
+        "ref": "Tempo Labs LinkedIn announcement",
+    },
+    {
+        "slug": "staysafe",
+        "title": "Stay-Safe Bounty (#109)",
+        "badge": "3 ACCEPTED",
+        "badge_tone": "purple",
+        "dot_color": "#A855F7",
+        "line1": "First beta tester: 3 reproducible Codex config & sandbox",
+        "line2": "report bugs accepted, fixed on main & bounty awarded.",
+        "tags": ["Codex Safety", "Config Eval", "Verified"],
+        "ref": "chalkbadger/stay-safe#109",
     },
 ]
 
@@ -644,6 +669,24 @@ def render_project_cards(theme_name: str) -> dict[str, str]:
     return cards
 
 
+def render_recognition_cards(theme_name: str) -> dict[str, str]:
+    """Render clickable minimalist cards for verified external recognition."""
+    cards: dict[str, str] = {}
+    for item in RECOGNITION_CARDS:
+        cards[f"rec-{item['slug']}-{theme_name}.svg"] = _render_half_card(
+            theme_name,
+            title=item["title"],
+            badge=item["badge"],
+            badge_tone=item["badge_tone"],
+            dot_color=item["dot_color"],
+            line1=item["line1"],
+            line2=item["line2"],
+            tags=item["tags"],
+            aria_label=f"{item['title']} ({item['badge']}) — {item['ref']}",
+        )
+    return cards
+
+
 def render_stack_svg(theme_name: str) -> str:
     """Render a minimalist card showing curated technical capabilities."""
     t = _theme(theme_name)
@@ -807,6 +850,7 @@ def generate_outputs(
         }
         batch.update(render_oss_cards(metrics, mode))
         batch.update(render_project_cards(mode))
+        batch.update(render_recognition_cards(mode))
         for filename, svg_text in batch.items():
             validate_svg_xml(svg_text, filename)
             svg_files[filename] = svg_text

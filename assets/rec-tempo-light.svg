@@ -1,0 +1,17 @@
+<svg width="414" height="156" viewBox="0 0 414 156" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tempo (YC S23) × Contra (1ST PLACE) — Tempo Labs LinkedIn announcement">
+  <rect width="414" height="156" rx="14" fill="#FAFAFA" stroke="#E4E4E7" stroke-width="1"/>
+  <circle cx="26" cy="30" r="4.5" fill="#22C55E"/>
+  <text x="40" y="35" fill="#09090B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600">Tempo (YC S23) × Contra</text>
+  <rect x="310" y="19" width="84" height="22" rx="6" fill="#DCFCE7"/>
+  <text x="352.0" y="34" text-anchor="middle" fill="#166534" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="600">1ST PLACE</text>
+  <text x="20" y="69" fill="#3F3F46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13">Won the Tempo × Contra design-engineering challenge</text>
+  <text x="20" y="89" fill="#3F3F46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13">with CloudCompass AI (Next.js, React Flow, Bedrock).</text>
+  <line x1="20" y1="106" x2="394" y2="106" stroke="#E4E4E7" stroke-width="1"/>
+  <rect x="20" y="118" width="120" height="22" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="80.0" y="133" text-anchor="middle" fill="#52525B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="500">CloudCompass AI</text>
+  <rect x="147" y="118" width="38" height="22" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="166.0" y="133" text-anchor="middle" fill="#52525B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="500">AWS</text>
+  <rect x="192" y="118" width="106" height="22" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
+  <text x="245.0" y="133" text-anchor="middle" fill="#52525B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="500">Official Post</text>
+  <text x="394" y="134" text-anchor="end" fill="#52525B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15">↗</text>
+</svg>

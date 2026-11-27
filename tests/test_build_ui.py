@@ -120,7 +120,7 @@ class TestBuildUI(unittest.TestCase):
             updated_at_utc="2026-11-27 11:46 UTC",
         )
         svgs, _ = build_ui.generate_outputs(metrics, SAMPLE_README)
-        self.assertEqual(len(svgs), 26)
+        self.assertEqual(len(svgs), 30)
 
         dark_names = sorted(k for k in svgs if k.endswith("-dark.svg"))
         for dark_name in dark_names:
