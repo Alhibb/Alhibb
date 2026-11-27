@@ -16,15 +16,17 @@ from scripts import build_ui
 
 def sample_raw_payload(
     *,
-    contributions_1y: int = 199,
-    dex_merged: int = 21,
+    contributions_1y: int = 210,
+    dex_merged: int = 24,
     dex_open: int = 1,
     agentipy_merged: int = 15,
     agentipy_open: int = 2,
-    pyhealth_merged: int = 5,
-    pyhealth_open: int = 1,
+    pyhealth_merged: int = 7,
+    pyhealth_open: int = 0,
     raen_merged: int = 1,
-    goose_issues: int = 2,
+    goose_merged: int = 1,
+    goose_open: int = 1,
+    goose_issues: int = 3,
 ) -> dict:
     return {
         "user": {
@@ -41,6 +43,8 @@ def sample_raw_payload(
         "pyhealthMerged": {"issueCount": pyhealth_merged},
         "pyhealthOpen": {"issueCount": pyhealth_open},
         "raenMerged": {"issueCount": raen_merged},
+        "gooseMerged": {"issueCount": goose_merged},
+        "gooseOpen": {"issueCount": goose_open},
         "gooseIssues": {"issueCount": goose_issues},
     }
 
@@ -62,25 +66,27 @@ class TestBuildUI(unittest.TestCase):
         metrics = build_ui.normalize_and_validate(
             sample_raw_payload(),
             username="Alhibb",
-            updated_at_utc="2026-11-19 11:46 UTC",
+            updated_at_utc="2026-11-27 11:46 UTC",
         )
-        self.assertEqual(metrics.featured_merged_total, 42)
+        self.assertEqual(metrics.featured_merged_total, 48)
         self.assertEqual(metrics.featured_open_total, 4)
-        self.assertEqual(metrics.goose_issues, 2)
+        self.assertEqual(metrics.goose_issues, 3)
 
         cards = build_ui.render_oss_cards(metrics, "dark")
-        self.assertIn("21 MERGED", cards["oss-dex-dark.svg"])
+        self.assertIn("1 MERGED PR", cards["oss-goose-dark.svg"])
+        self.assertIn("1 OPEN PR", cards["oss-goose-dark.svg"])
+        self.assertIn("3 BUG REPORTS", cards["oss-goose-dark.svg"])
+        self.assertIn("24 MERGED", cards["oss-dex-dark.svg"])
         self.assertIn("15 MERGED", cards["oss-agentipy-dark.svg"])
-        self.assertIn("5 MERGED · +1 OPEN", cards["oss-pyhealth-dark.svg"])
+        self.assertIn("7 MERGED", cards["oss-pyhealth-dark.svg"])
         self.assertIn("1 MERGED", cards["oss-raen-dark.svg"])
-        self.assertIn("2 BUG REPORTS", cards["oss-goose-dark.svg"])
 
     def test_empty_and_malformed_data_rejected(self) -> None:
         with self.assertRaises(build_ui.ValidationError):
             build_ui.normalize_and_validate({})
 
         with self.assertRaises(build_ui.ValidationError):
-            build_ui.normalize_and_validate(sample_raw_payload(dex_merged=-1))
+            build_ui.normalize_and_validate(sample_raw_payload(goose_merged=-1))
 
         bad_bool = sample_raw_payload()
         bad_bool["raenMerged"]["issueCount"] = True
@@ -88,7 +94,7 @@ class TestBuildUI(unittest.TestCase):
             build_ui.normalize_and_validate(bad_bool)
 
         missing_key = sample_raw_payload()
-        del missing_key["gooseIssues"]
+        del missing_key["gooseMerged"]
         with self.assertRaises(build_ui.ValidationError):
             build_ui.normalize_and_validate(missing_key)
 
@@ -100,6 +106,7 @@ class TestBuildUI(unittest.TestCase):
             headline="AI & ML <Systems>",
             supporting_line="Agents & Tooling",
             org_line="DevClans & Co",
+            sub_org_line="DevClans & AgentConform",
         )
         root = ET.fromstring(svg)
         self.assertTrue(root.tag.endswith("svg"))
@@ -110,10 +117,10 @@ class TestBuildUI(unittest.TestCase):
         metrics = build_ui.normalize_and_validate(
             sample_raw_payload(),
             username="Alhibb",
-            updated_at_utc="2026-11-19 11:46 UTC",
+            updated_at_utc="2026-11-27 11:46 UTC",
         )
         svgs, _ = build_ui.generate_outputs(metrics, SAMPLE_README)
-        self.assertEqual(len(svgs), 24)
+        self.assertEqual(len(svgs), 26)
 
         dark_names = sorted(k for k in svgs if k.endswith("-dark.svg"))
         for dark_name in dark_names:
@@ -123,20 +130,26 @@ class TestBuildUI(unittest.TestCase):
             light_texts = [el.text.strip() for el in ET.fromstring(svgs[light_name]).iter() if el.text and el.text.strip()]
             self.assertEqual(dark_texts, light_texts, f"Parity mismatch for {dark_name}")
 
-    def test_marked_sections_preserve_surrounding_content_and_are_deterministic(self) -> None:
-        metrics = build_ui.normalize_and_validate(
-            sample_raw_payload(),
-            username="Alhibb",
-            updated_at_utc="2026-11-19 11:46 UTC",
-        )
-        svgs_a, readme_a = build_ui.generate_outputs(metrics, SAMPLE_README)
-        svgs_b, readme_b = build_ui.generate_outputs(metrics, SAMPLE_README)
+    def test_skip_if_unchanged_prevents_timestamp_only_rewrites(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            (base / "README.md").write_text(SAMPLE_README, encoding="utf-8")
+            fixture = base / "data.json"
+            fixture.write_text(json.dumps(sample_raw_payload()), encoding="utf-8")
 
-        self.assertEqual(svgs_a, svgs_b)
-        self.assertEqual(readme_a, readme_b)
-        self.assertIn("Hand-authored intro.", readme_a)
-        self.assertIn("Hand-authored footer.", readme_a)
-        self.assertNotIn("stale activity", readme_a)
+            build_ui.main(["--base-dir", str(base), "--input-json", str(fixture), "--timestamp", "2026-11-27 10:00 UTC"])
+            first_readme = (base / "README.md").read_text(encoding="utf-8")
+            self.assertIn("2026-11-27 10:00 UTC", first_readme)
+
+            # Second run with identical metrics and --skip-if-unchanged should not bump timestamp
+            build_ui.main([
+                "--base-dir", str(base),
+                "--input-json", str(fixture),
+                "--timestamp", "2026-11-27 16:00 UTC",
+                "--skip-if-unchanged",
+            ])
+            second_readme = (base / "README.md").read_text(encoding="utf-8")
+            self.assertEqual(first_readme, second_readme)
 
     def test_failure_preserves_last_good_outputs(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

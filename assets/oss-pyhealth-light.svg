@@ -4,8 +4,8 @@
   <text x="40" y="35" fill="#09090B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600">sunlabuiuc/PyHealth</text>
   <rect x="316" y="19" width="78" height="22" rx="6" fill="#F3E8FF"/>
   <text x="355.0" y="34" text-anchor="middle" fill="#6B21A8" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="600">7 MERGED</text>
-  <text x="20" y="69" fill="#3F3F46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13">Integrated BEHRT, BiteNet, UDC &amp; DescEmb EHR models</text>
-  <text x="20" y="89" fill="#3F3F46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13">plus group-conditional fair conformal calibration.</text>
+  <text x="20" y="69" fill="#3F3F46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13">Integrated clinical EHR &amp; disease-graph models (BEHRT,</text>
+  <text x="20" y="89" fill="#3F3F46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13">BiteNet, UDC, DescEmb &amp; more) + fair conformal calib.</text>
   <line x1="20" y1="106" x2="394" y2="106" stroke="#E4E4E7" stroke-width="1"/>
   <rect x="20" y="118" width="65" height="22" rx="6" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="1"/>
   <text x="52.5" y="133" text-anchor="middle" fill="#52525B" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="500">PyTorch</text>

@@ -33,7 +33,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PROFILE_USERNAME: Alhibb
-        run: python3 scripts/build_ui.py
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            python3 scripts/build_ui.py --skip-if-unchanged
+          else
+            python3 scripts/build_ui.py
+          fi
 
       - name: Commit updated profile outputs
         run: |
